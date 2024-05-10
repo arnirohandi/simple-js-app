@@ -25,15 +25,16 @@ let pokemonList = [
 // Loop through the array and write each Pokémon name, height, and highlight special Pokémon
 for (let i = 0; i < pokemonList.length; i++) {
     let pokemon = pokemonList[i];
+    let pokemonInfo = "";
 
     // Check if the height is above a certain value to highlight special Pokémon
-    // if (pokemon.height > 1.5) {
-    //     pokemonInfo += " - Wow, that's big!";
-    // }
+    if (pokemon.height > 1) {
+        pokemonInfo += " - Wow, that's big!";
+    }
 
     document.write("<div class='pokemon'>" + 
     "<p class='name'>" + pokemon.name + "</p>" + 
-    "<p class='height'>" + " (height: " + pokemon.height +")</p>" + 
+    "<p class='height'>" + " (hei" +              "ght: " + pokemon.height + ")" + pokemonInfo + "</p>" + 
     "</div>");
     
 }
