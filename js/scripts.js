@@ -32,9 +32,9 @@ for (let i = 0; i < pokemonList.length; i++) {
         pokemonInfo += " - Wow, that's big!";
     }
 
-    document.write("<div class='pokemon'>" + 
-    "<p class='name'>" + pokemon.name + "</p>" + 
-    "<p class='height'>" + " (hei" +              "ght: " + pokemon.height + ")" + pokemonInfo + "</p>" + 
-    "</div>");
-    
+    document.write("<div class='pokemon'>" +
+        "<p class='name'>" + pokemon.name + "</p>" +
+        "<p class='height'>" + " (hei" + "ght: " + pokemon.height + ")" + pokemonInfo + "</p>" +
+        "</div>");
+
 }
