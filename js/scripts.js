@@ -24,7 +24,7 @@ let pokemonList = [
 
 // Loop through the array and write each Pokémon name, height, and highlight special Pokémon
 for (let i = 0; i < pokemonList.length; i++) {
-    let pokemon = pokemonList[i];
+    let pisang = pokemonList[i];
     // let pokemonInfo = pokemon.name + " (height: " + pokemon.height + ")";
 
     // Check if the height is above a certain value to highlight special Pokémon
