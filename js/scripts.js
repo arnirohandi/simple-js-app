@@ -83,7 +83,7 @@ let pokemonRepository = (function () {
 
   /**
   * Get details of pokemon from API server
-  * @param {item} item
+  * @param {Pokemon} item
   */
   function loadDetails(item) {
     let url = item.detailsUrl;
@@ -104,6 +104,7 @@ let pokemonRepository = (function () {
   * @param {Pokemon} pokemon 
   */
   function showDetails(pokemon) {
+    loadDetails(pokemon);
     console.log(pokemon);
   }
 
