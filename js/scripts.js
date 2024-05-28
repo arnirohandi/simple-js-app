@@ -3,12 +3,20 @@ let pokemonRepository = (function () {
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=5';
 
-  // Use the add() function to add each Pokémon from the results to your pokemonList variable. 
-  // Make sure to set name and detailsUrl as the keys. Use this as a reference to see what the API response looks like.
+  /**
+  * Add pokemon to the pokemon list
+  * @param {Pokemon} pokemon
+  */
   function add(pokemon) {
     pokemonList.push(pokemon);
   }
 
+  /**
+  * Add pokemon info to pokemon list,
+  * create unordered list,
+  * create pokemon as button in html page
+  * @param {Pokemon} pokemon 
+  */
   function addListItem(pokemon) {
     let pokemonInfo = pokemon.name + " (height: " + pokemon.height + ")";
 
@@ -38,12 +46,18 @@ let pokemonRepository = (function () {
     pokemonList.appendChild(listItem);
   }
 
+  /**
+  * Get pokemon list
+  * @return {Array<Pokemon>} Array of pokemon 
+  */
   function getAll() {
     return pokemonList
   }
 
-  // Add a LoadList() function as a return key that uses fetch 
-  // to GET the complete list of Pokémon from here: https://pokeapi.co/api/v2/pokemon/
+  /**
+  * Fetch pokemons from API server
+  * @return {Promise} Promise 
+  */
   function loadList() {
     return fetch(apiUrl)
       .then(function (response) {
@@ -67,8 +81,10 @@ let pokemonRepository = (function () {
       )
   }
 
-  // Add a loadDetails() function, as well. The loadDetails() function should expect a parameter with a Pokémon object as a parameter. 
-  // loadDetails() should GET the Pokémon details using the URL from the Pokémon object in the parameter.
+  /**
+  * Get details of pokemon from API server
+  * @param {item} item
+  */
   function loadDetails(item) {
     let url = item.detailsUrl;
     return fetch(url).then(function (response) {
@@ -83,6 +99,10 @@ let pokemonRepository = (function () {
     });
   }
 
+  /**
+  * Show details of pokemon list
+  * @param {Pokemon} pokemon 
+  */
   function showDetails(pokemon) {
     console.log(pokemon);
   }
