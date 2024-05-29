@@ -179,11 +179,13 @@ function hideModal() {
   modalContainer.classList.remove('is-visible');
 }
 
-pokemonRepository.loadList().then(function () {
+pokemonRepository.loadList()
+.then(function () {
   // Now the data is loaded!
   pokemonRepository.getAll().forEach(function (pokemon) {
     // Load the datails first, otherwise the pokemon only has name and url
-    pokemonRepository.loadDetails(pokemon).then(function () {
+    pokemonRepository.loadDetails(pokemon)
+    .then(function () {
       pokemonRepository.addListItem(pokemon);
     });
   });
@@ -196,6 +198,3 @@ window.addEventListener('keydown', (e) => {
     hideModal();
   }
 });
-
-
-
