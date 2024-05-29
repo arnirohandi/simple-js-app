@@ -57,7 +57,7 @@ let pokemonRepository = (function () {
 
   /**
   * Fetch pokemons from API server
-  * @return {Promise} Promise 
+  * @return {Promise<json>} Promise 
   */
   function loadList() {
     return fetch(apiUrl)
@@ -106,10 +106,9 @@ let pokemonRepository = (function () {
   */
   function showDetails(pokemon) {
     loadDetails(pokemon);
-    console.log(pokemon);
     showModal(
-      pokemon.name, 
-      'Height: ' + pokemon.height, 
+      pokemon.name,
+      'Height: ' + pokemon.height,
       pokemon.imageUrl
     );
   }
@@ -123,16 +122,12 @@ let pokemonRepository = (function () {
   };
 })();
 
-pokemonRepository.loadList().then(function () {
-  // Now the data is loaded!
-  pokemonRepository.getAll().forEach(function (pokemon) {
-    // Load the datails first, otherwise the pokemon only has name and url
-    pokemonRepository.loadDetails(pokemon).then( function() {
-      pokemonRepository.addListItem(pokemon);
-    });
-  });
-});
-
+/**
+* Show modal of Pokemon profile
+* @param {string} title Title of the modal
+* @param {string} text Content inside the modal
+* @param {string} imgUrl Link to picture of pokemon
+*/
 function showModal(title, text, imgUrl) {
   let modalContainer = document.querySelector('#modal-container');
 
@@ -147,7 +142,7 @@ function showModal(title, text, imgUrl) {
   closeButtonElement.classList.add('modal-close');
   closeButtonElement.innerText = 'Close';
   closeButtonElement.addEventListener('click', hideModal);
-  
+
   let titleElement = document.createElement('h1');
   titleElement.innerText = title;
 
@@ -165,6 +160,7 @@ function showModal(title, text, imgUrl) {
 
   modalContainer.classList.add('is-visible');
 
+  // Listener for click outside the modal
   modalContainer.addEventListener('click', (e) => {
     // Since this is also triggered when clicking INSIDE the modal
     // We only want to close if the user clicks directly on the overlay
@@ -175,14 +171,31 @@ function showModal(title, text, imgUrl) {
   });
 }
 
+/**
+* Hide modal of Pokemon profile
+*/
 function hideModal() {
   let modalContainer = document.querySelector('#modal-container');
   modalContainer.classList.remove('is-visible');
 }
 
+pokemonRepository.loadList().then(function () {
+  // Now the data is loaded!
+  pokemonRepository.getAll().forEach(function (pokemon) {
+    // Load the datails first, otherwise the pokemon only has name and url
+    pokemonRepository.loadDetails(pokemon).then(function () {
+      pokemonRepository.addListItem(pokemon);
+    });
+  });
+});
+
+// Listner for escape key
 window.addEventListener('keydown', (e) => {
   let modalContainer = document.querySelector('#modal-container');
   if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
-    hideModal();  
+    hideModal();
   }
 });
+
+
+
