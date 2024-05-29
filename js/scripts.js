@@ -21,7 +21,7 @@ let pokemonRepository = (function () {
     let pokemonInfo = pokemon.name + " (height: " + pokemon.height + ")";
 
     // Check if the height is above a certain value to highlight special Pokémon
-    if (pokemon.height > 1.5) {
+    if (pokemon.height > 10) {
       pokemonInfo += " - Wow, that's big!";
     }
 
@@ -33,7 +33,8 @@ let pokemonRepository = (function () {
 
     // Create button node
     let button = document.createElement('button')
-    button.innerText = pokemon.name;
+    // button.innerText = pokemon.name;
+    button.innerText = pokemonInfo;
     button.classList.add('pokemon-list');
 
     // Event listener
@@ -105,7 +106,12 @@ let pokemonRepository = (function () {
   */
   function showDetails(pokemon) {
     loadDetails(pokemon);
-    showModal(pokemon.name, 'Height: ' + pokemon.height);
+    console.log(pokemon);
+    showModal(
+      pokemon.name, 
+      'Height: ' + pokemon.height, 
+      pokemon.imageUrl
+    );
   }
 
   return {
@@ -120,11 +126,14 @@ let pokemonRepository = (function () {
 pokemonRepository.loadList().then(function () {
   // Now the data is loaded!
   pokemonRepository.getAll().forEach(function (pokemon) {
-    pokemonRepository.addListItem(pokemon);
+    // Load the datails first, otherwise the pokemon only has name and url
+    pokemonRepository.loadDetails(pokemon).then( function() {
+      pokemonRepository.addListItem(pokemon);
+    });
   });
 });
 
-function showModal(title, text) {
+function showModal(title, text, imgUrl) {
   let modalContainer = document.querySelector('#modal-container');
 
   // Clear all existing modal content
@@ -145,19 +154,35 @@ function showModal(title, text) {
   let contentElement = document.createElement('p');
   contentElement.innerText = text;
 
+  let imageElement = document.createElement('img');
+  imageElement.src = imgUrl;
+
   modal.appendChild(closeButtonElement);
   modal.appendChild(titleElement);
   modal.appendChild(contentElement);
+  modal.appendChild(imageElement);
   modalContainer.appendChild(modal);
 
   modalContainer.classList.add('is-visible');
-}
 
-document.querySelector('#show-modal').addEventListener('click', () => {
-  showModal('Judul', 'Isi dari modal');
-});
+  modalContainer.addEventListener('click', (e) => {
+    // Since this is also triggered when clicking INSIDE the modal
+    // We only want to close if the user clicks directly on the overlay
+    let target = e.target;
+    if (target === modalContainer) {
+      hideModal();
+    }
+  });
+}
 
 function hideModal() {
   let modalContainer = document.querySelector('#modal-container');
   modalContainer.classList.remove('is-visible');
 }
+
+window.addEventListener('keydown', (e) => {
+  let modalContainer = document.querySelector('#modal-container');
+  if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+    hideModal();  
+  }
+});
