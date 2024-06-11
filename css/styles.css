@@ -42,12 +42,7 @@ img {
   color: #666; /* Medium grey text color */
   display: inline; /* Display inline */
 }
-.pokemon-list {
-  background-color: transparent;
-  font-family: 'Ubuntu', sans-serif;
-  border: 0;
-  font-size: 1em;
-}
+
 
 li {
   background-color: #e7e8e7;

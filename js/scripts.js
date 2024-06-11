@@ -1,7 +1,7 @@
 // IIFE
 let pokemonRepository = (function () {
   let pokemonList = [];
-  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/';
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=4';
 
   /**
   * Add pokemon to the pokemon list
@@ -26,16 +26,21 @@ let pokemonRepository = (function () {
     }
 
     // Get ul node
-    let pokemonList = document.querySelector('.pokemon-list');
+    let pokemonList = document.querySelector('#pokemon-list');
 
     // Create li node
-    let listItem = document.createElement('li')
+    let listItem = document.createElement('li');
+
+    // Add class list-group-item
+    $("li").addClass('list-group-item');
 
     // Create button node
-    let button = document.createElement('button')
-    // button.innerText = pokemon.name;
+    let button = document.createElement('button');
     button.innerText = pokemonInfo;
-    button.classList.add('pokemon-list');
+    $("button").addClass("btn btn-warning");
+    $("button").attr("data-toggle", "modal");
+    $("button").attr("data-target", "#exampleModal");
+    // data-toggle="modal" data-target="#exampleModal"
 
     // Event listener
     button.addEventListener('click', function () { showDetails(pokemon) });
@@ -129,46 +134,84 @@ let pokemonRepository = (function () {
 * @param {string} imgUrl Link to picture of pokemon
 */
 function showModal(title, text, imgUrl) {
-  let modalContainer = document.querySelector('#modal-container');
 
-  // Clear all existing modal content
-  modalContainer.innerHTML = '';
+  let modalBody = $(".modal-body");
+  let modalTitle = $(".modal-title");
+  let modalHeader = $(".modal-header");
+  // let $modalContainer = $("#modal-container");
+  //clear existing content of the model
+  // modalHeader.empty();
+  modalTitle.empty();
+  modalBody.empty();
 
-  let modal = document.createElement('div');
-  modal.classList.add('modal');
+  //creating element for name in modal content
+  let nameElement = $("<h1>" + title + "</h1>");
+  // // creating img in modal content
+  let imageElementFront = $('<img class="modal-img" style="width:50%">');
+  imageElementFront.attr("src", imgUrl);
+  // let imageElementBack = $('<img class="modal-img" style="width:50%">');
+  // imageElementBack.attr("src", item.imageUrlBack);
+  // // //creating element for height in modal content
+  let heightElement = $("<p>" + "height : " + text + "</p>");
+  // // //creating element for weight in modal content
+  // let weightElement = $("<p>" + "weight : " + item.weight + "</p>");
+  // // //creating element for type in modal content
+  // let typesElement = $("<p>" + "types : " + item.types + "</p>");
+  // // //creating element for abilities in modal content
+  // let abilitiesElement = $("<p>" + "abilities : " + item.abilities + "</p>");
 
-  // Add the new modal content
-  let closeButtonElement = document.createElement('button');
-  closeButtonElement.classList.add('modal-close');
-  closeButtonElement.innerText = 'Close';
-  closeButtonElement.addEventListener('click', hideModal);
+  modalTitle.append(nameElement);
+  modalBody.append(imageElementFront);
+  // modalBody.append(imageElementBack);
+  modalBody.append(heightElement);
+  // modalBody.append(weightElement);
+  // modalBody.append(typesElement);
+  // modalBody.append(abilitiesElement);
 
-  let titleElement = document.createElement('h1');
-  titleElement.innerText = title;
 
-  let contentElement = document.createElement('p');
-  contentElement.innerText = text;
 
-  let imageElement = document.createElement('img');
-  imageElement.src = imgUrl;
 
-  modal.appendChild(closeButtonElement);
-  modal.appendChild(titleElement);
-  modal.appendChild(contentElement);
-  modal.appendChild(imageElement);
-  modalContainer.appendChild(modal);
 
-  modalContainer.classList.add('is-visible');
+  // let modalContainer = document.querySelector('#modal-container');
 
-  // Listener for click outside the modal
-  modalContainer.addEventListener('click', (e) => {
-    // Since this is also triggered when clicking INSIDE the modal
-    // We only want to close if the user clicks directly on the overlay
-    let target = e.target;
-    if (target === modalContainer) {
-      hideModal();
-    }
-  });
+  // // Clear all existing modal content
+  // modalContainer.innerHTML = '';
+
+  // let modal = document.createElement('div');
+  // modal.classList.add('modal');
+
+  // // Add the new modal content
+  // let closeButtonElement = document.createElement('button');
+  // closeButtonElement.classList.add('modal-close');
+  // closeButtonElement.innerText = 'Close';
+  // closeButtonElement.addEventListener('click', hideModal);
+
+  // let titleElement = document.createElement('h1');
+  // titleElement.innerText = title;
+
+  // let contentElement = document.createElement('p');
+  // contentElement.innerText = text;
+
+  // let imageElement = document.createElement('img');
+  // imageElement.src = imgUrl;
+
+  // modal.appendChild(closeButtonElement);
+  // modal.appendChild(titleElement);
+  // modal.appendChild(contentElement);
+  // modal.appendChild(imageElement);
+  // modalContainer.appendChild(modal);
+
+  // modalContainer.classList.add('is-visible');
+
+  // // Listener for click outside the modal
+  // modalContainer.addEventListener('click', (e) => {
+  //   // Since this is also triggered when clicking INSIDE the modal
+  //   // We only want to close if the user clicks directly on the overlay
+  //   let target = e.target;
+  //   if (target === modalContainer) {
+  //     hideModal();
+  //   }
+  // });
 }
 
 /**
@@ -198,15 +241,3 @@ window.addEventListener('keydown', (e) => {
     hideModal();
   }
 });
-
-
-// Ini program javascript menggunakan jquery versi 3.7.1 (Juni 2024)
-// abc
-// def// abc
-// def// abc
-// def// abc
-// def// def
-// def// abc
-// def// abc
-// def// abc
-// def
