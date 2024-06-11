@@ -198,3 +198,15 @@ window.addEventListener('keydown', (e) => {
     hideModal();
   }
 });
+
+
+// Ini program javascript menggunakan jquery versi 3.7.1 (Juni 2024)
+// abc
+// def// abc
+// def// abc
+// def// abc
+// def// def
+// def// abc
+// def// abc
+// def// abc
+// def
