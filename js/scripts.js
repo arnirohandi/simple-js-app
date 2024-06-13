@@ -40,7 +40,6 @@ let pokemonRepository = (function () {
     $("button").addClass("btn btn-warning");
     $("button").attr("data-toggle", "modal");
     $("button").attr("data-target", "#exampleModal");
-    // data-toggle="modal" data-target="#exampleModal"
 
     // Event listener
     button.addEventListener('click', function () { showDetails(pokemon) });
@@ -146,29 +145,15 @@ function showModal(title, text, imgUrl) {
 
   //creating element for name in modal content
   let nameElement = $("<h1>" + title + "</h1>");
-  // // creating img in modal content
+  // creating img in modal content
   let imageElementFront = $('<img class="modal-img" style="width:50%">');
   imageElementFront.attr("src", imgUrl);
-  // let imageElementBack = $('<img class="modal-img" style="width:50%">');
-  // imageElementBack.attr("src", item.imageUrlBack);
-  // // //creating element for height in modal content
   let heightElement = $("<p>" + "Height : " + text + "</p>");
-  // // //creating element for weight in modal content
-  // let weightElement = $("<p>" + "weight : " + item.weight + "</p>");
-  // // //creating element for type in modal content
-  // let typesElement = $("<p>" + "types : " + item.types + "</p>");
-  // // //creating element for abilities in modal content
-  // let abilitiesElement = $("<p>" + "abilities : " + item.abilities + "</p>");
 
   modalTitle.append(nameElement);
   modalBody.append(imageElementFront);
-  // modalBody.append(imageElementBack);
+  modalBody.append(screenReaderText);
   modalBody.append(heightElement);
-  // modalBody.append(weightElement);
-  // modalBody.append(typesElement);
-  // modalBody.append(abilitiesElement);
-
-
 
 
 
