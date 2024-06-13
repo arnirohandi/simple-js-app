@@ -113,7 +113,7 @@ let pokemonRepository = (function () {
     loadDetails(pokemon);
     showModal(
       pokemon.name,
-      'Height: ' + pokemon.height,
+      pokemon.height,
       pokemon.imageUrl
     );
   }
@@ -152,7 +152,7 @@ function showModal(title, text, imgUrl) {
   // let imageElementBack = $('<img class="modal-img" style="width:50%">');
   // imageElementBack.attr("src", item.imageUrlBack);
   // // //creating element for height in modal content
-  let heightElement = $("<p>" + "height : " + text + "</p>");
+  let heightElement = $("<p>" + "Height : " + text + "</p>");
   // // //creating element for weight in modal content
   // let weightElement = $("<p>" + "weight : " + item.weight + "</p>");
   // // //creating element for type in modal content
