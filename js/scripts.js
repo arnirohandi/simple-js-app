@@ -32,14 +32,14 @@ let pokemonRepository = (function () {
     let listItem = document.createElement('li');
 
     // Add class list-group-item
-    $("li").addClass('list-group-item');
+    listItem.classList.add('list-group-item');
 
     // Create button node
     let button = document.createElement('button');
     button.innerText = pokemonInfo;
-    $("button").addClass("btn btn-warning");
-    $("button").attr("data-toggle", "modal");
-    $("button").attr("data-target", "#exampleModal");
+    button.classList.add('btn', 'btn-warning');
+    button.setAttribute('data-toggle', 'modal');
+    button.setAttribute('data-target', '#exampleModal');
 
     // Event listener
     button.addEventListener('click', function () { showDetails(pokemon) });
