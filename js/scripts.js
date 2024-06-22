@@ -160,16 +160,16 @@ function hideModal() {
 }
 
 pokemonRepository.loadList()
-.then(function () {
-  // Now the data is loaded!
-  pokemonRepository.getAll().forEach(function (pokemon) {
-    // Load the datails first, otherwise the pokemon only has name and url
-    pokemonRepository.loadDetails(pokemon)
-    .then(function () {
-      pokemonRepository.addListItem(pokemon);
+  .then(function () {
+    // Now the data is loaded!
+    pokemonRepository.getAll().forEach(function (pokemon) {
+      // Load the datails first, otherwise the pokemon only has name and url
+      pokemonRepository.loadDetails(pokemon)
+        .then(function () {
+          pokemonRepository.addListItem(pokemon);
+        });
     });
   });
-});
 
 // Listner for escape key
 window.addEventListener('keydown', (e) => {
