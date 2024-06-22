@@ -94,6 +94,9 @@ let pokemonRepository = (function () {
       item.imageUrl = details.sprites.front_default;
       item.height = details.height;
       item.types = details.types;
+      item.skill = details.abilities.map(
+        (ability) => ability.ability.name
+      );
     }).catch(function (e) {
       console.error(e);
     });
@@ -108,7 +111,8 @@ let pokemonRepository = (function () {
     showModal(
       pokemon.name,
       pokemon.height,
-      pokemon.imageUrl
+      pokemon.imageUrl,
+      pokemon.skill
     );
   }
 
@@ -126,8 +130,9 @@ let pokemonRepository = (function () {
 * @param {string} title Title of the modal
 * @param {string} text Content inside the modal
 * @param {string} imgUrl Link to picture of pokemon
+* @param {string} skill Ability of the Pokemon
 */
-function showModal(title, text, imgUrl) {
+function showModal(title, text, imgUrl, skill) {
 
   let modalBody = $(".modal-body");
   let modalTitle = $(".modal-title");
@@ -139,7 +144,7 @@ function showModal(title, text, imgUrl) {
   // Creating img in modal content
   let imageElementFront = $('<img class="modal-img" style="width:50%">');
   imageElementFront.attr("src", imgUrl);
-  let heightElement = $("<p>" + "Height : " + text + "</p>");
+  let heightElement = $("<p>" + "Height : " + text + "</p><p>Ability: " + skill + "</p>");
 
   modalTitle.append(nameElement);
   modalBody.append(imageElementFront);
