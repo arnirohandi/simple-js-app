@@ -20,11 +20,6 @@ let pokemonRepository = (function () {
   function addListItem(pokemon) {
     let pokemonInfo = pokemon.name + " (height: " + pokemon.height + ")";
 
-    // Check if the height is above a certain value to highlight special Pokémon
-    if (pokemon.height > 10) {
-      pokemonInfo += " - Wow, that's big!";
-    }
-
     // Get ul node
     let pokemonList = document.querySelector('#pokemon-list');
 
