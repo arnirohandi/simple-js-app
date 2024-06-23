@@ -18,7 +18,7 @@ let pokemonRepository = (function () {
   * @param {Pokemon} pokemon 
   */
   function addListItem(pokemon) {
-    let pokemonInfo = pokemon.name + " (height: " + pokemon.height + ")";
+    let pokemonInfo = pokemon.name
 
     // Get ul node
     let pokemonList = document.querySelector('#pokemon-list');
@@ -144,7 +144,7 @@ function showModal(title, text, imgUrl, skill) {
   // Creating img in modal content
   let imageElementFront = $('<img class="modal-img" style="width:50%">');
   imageElementFront.attr("src", imgUrl);
-  let heightElement = $("<p>" + "Height : " + text + "</p><p>Ability: " + skill + "</p>");
+  let heightElement = $("<p>" + "Height: " + text + "</p><p>Ability: " + skill + "</p>");
 
   modalTitle.append(nameElement);
   modalBody.append(imageElementFront);
