@@ -4,7 +4,6 @@
 
 .pokemon {
   border: 2px solid #4CAF50;
-  /* Green border */
   border-radius: 10px;
   padding: 15px;
   margin-bottom: 15px;
@@ -67,17 +66,6 @@ ul.list-group {
   /* this is used to center the modal */
   display: grid;
   text-align: center;
-}
-
-.modal {
-  margin: auto;
-  display: inline-block;
-  box-sizing: border-box;
-  background: #fff;
-  padding: 15px;
-  width: 100%;
-  max-width: 700px;
-  text-align: left;
 }
 
 .modal-close {
