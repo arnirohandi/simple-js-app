@@ -116,12 +116,25 @@ let pokemonRepository = (function () {
     );
   }
 
+  function filterPokemons(searchTerm) {
+    let filteredPokemons = pokemonList.filter((pokemon) =>
+      pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    // Get ul node
+    let pokemonContainer = document.querySelector('#pokemon-list');
+    pokemonContainer.innerHTML = '';
+
+    filteredPokemons.forEach((pokemon) => addListItem(pokemon));
+  }
+
   return {
     add: add,
     addListItem: addListItem,
     getAll: getAll,
     loadList: loadList,
-    loadDetails: loadDetails
+    loadDetails: loadDetails,
+    filterPokemons: filterPokemons
   };
 })();
 
@@ -177,4 +190,14 @@ window.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
     hideModal();
   }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  document
+    .querySelector("#search-form")
+    .addEventListener("submit", function (e) {
+      e.preventDefault();
+      let searchTerm = document.querySelector("#search-input").value;
+      pokemonRepository.filterPokemons(searchTerm);
+    });
 });
